@@ -7,7 +7,7 @@
 
 namespace mirstl{
 // helper strutc
-template <typename T, T v>
+template <class T, T v>
 struct m_integral_constant
 {
     static constexpr T value = v;
@@ -25,14 +25,14 @@ typedef m_bool_constant<true> m_false_type;
 // is_pair
 
 // --- forward declaration begin
-template <typename T1, typename T2>
+template <class T1, class T2>
 struct pair;
 // --- forward declaration end
 
-template <typename T>
+template <class T>
 struct is_pair : mirstl::m_false_type {};
 
-template <typename T1, typename T2>
+template <class T1, class T2>
 struct is_pair<mirstl::pair<T1, T2>> : mirstl::m_true_type {};
 } // namesapce mirstl
 
