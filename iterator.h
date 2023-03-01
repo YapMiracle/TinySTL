@@ -9,6 +9,10 @@
 
 namespace mirstl {
 // 五种迭代器类型
+// 单向移动只读迭代器 Input Iterator
+// 单向移动只写迭代器 Output Iterator
+// 单向移动读写迭代器 Forward Iterator
+// 双向移动读写迭代器 Bidirectional Iterator
 struct input_iterator_tag {};
 struct output_iterator_tag {};
 struct forward_iterator_tag : public input_iterator_tag {};
@@ -19,11 +23,11 @@ struct random_access_iterator_tag : public bidireational_iterator_tag {};
 template <class Category, class T, class Diatance = ptrdiff_t,
     class Pointer = T*, class Reference = T&>
     struct iterator{
-    typedef Category                            iterator_category;  //种类
-    typedef T                                   value_type;         //值类型
-    typedef Pointer                             pointer;            //指针
-    typedef Reference                           reference;          //引用
-    typedef Distance                            difference_type;    
+    typedef Category    iterator_category;  //种类
+    typedef T           value_type;         //值类型
+    typedef Pointer     pointer;            //指针
+    typedef Reference   reference;          //引用
+    typedef Distance    difference_type;    
 };
 
 //iterator traits

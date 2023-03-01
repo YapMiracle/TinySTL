@@ -13,11 +13,12 @@ struct m_integral_constant
     static constexpr T value = v;
 };
 
+// m_bool_constant是m_integral_constant类的别名(c++11的用法，using 为模板类定义别名：using 别名=模板类)
 template <bool b>
 using m_bool_constant = m_integral_constant<bool, b>;
 
 typedef m_bool_constant<true> m_true_type;
-typedef m_bool_constant<true> m_false_type;
+typedef m_bool_constant<false> m_false_type;
 
 /*****************************************************************************************/
 // type traits
