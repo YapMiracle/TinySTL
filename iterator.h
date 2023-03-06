@@ -207,6 +207,64 @@ public:
 public:
     // 构造函数
     reverse_iterator() {}
+    explicit reverse_iterator(iterator_type i) : current(i) {}
+    reverse_iterator(const self& rhs) :current(rhs.current) {}
+
+public:
+    // 取出对应的正向迭代器
+    iterator_type base() const{
+        return current;
+    }
+
+    // 重载操作符
+    reference operator*() const{
+        // 实际对应正向迭代器的前一个位置
+        auto tmp = current;
+        return *--tmp;
+    }
+    pointer operator->() const{
+        return &(operator*());
+    }
+
+    // 前进(++)变为后退(--)
+    self& operator++(){
+        --current;
+        return *this;
+    }
+    self operator++(int){
+        self tmp = *this;
+        --current;
+        return tmp;
+    }
+    // 后退(--)变为前进(++)
+    slef& operator--(){
+        ++current;
+        return *this;
+    }
+    slef operator--(int){
+        self tmp = *this;
+        ++current;
+        return tmp;
+    }
+
+    self& operator+=(difference_type n){
+        current -= n;
+        return *this;
+    }
+    self operator+(difference_type n) const{
+        return self(current - n);
+    }
+    self& operator-=(difference_type n){
+        current += n;
+        return &this;
+    }
+    self operator-(difference_type n) const{
+        return self(current + n);
+    }
+
+    reference operator[](difference_type n) const{
+        return *(*this + n);
+    }
 };
 }
 #endif // MIRTINYSTL_ITERATOR_H_
